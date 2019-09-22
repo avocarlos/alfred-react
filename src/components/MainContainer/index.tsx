@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
     ),
     marginLeft: (props: StyleProps): string | number => (
       props.drawer ? 0 : 'auto'
-    )
+    ),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   },
   drawer: {
     width: DRAWER_WIDTH

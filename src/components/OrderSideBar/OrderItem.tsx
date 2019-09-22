@@ -43,7 +43,8 @@ const OrderItem: React.FC<Props> = (props) => {
         classes={{root:classes.text}}
         primary={title}
         primaryTypographyProps={{
-          noWrap: true
+          noWrap: true,
+          variant: 'body2'
         }}
       />
       <ListItemSecondaryAction>

@@ -5,13 +5,15 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 interface Props {
+  id: string;
   title: string;
   amount: number;
-  onClick?: () => void;
+  onClick: (category: string) => void;
 }
 
-const FeaturedCard: React.FC<Props> = (props) => {
+const CategoryCard: React.FC<Props> = (props) => {
   const {
+    id,
     title,
     amount,
     onClick
@@ -19,7 +21,7 @@ const FeaturedCard: React.FC<Props> = (props) => {
 
   return (
     <Card>
-      <CardActionArea>
+      <CardActionArea onClick={() => onClick(id)}>
         <CardContent>
           <Typography variant="h6">{title}</Typography>
           <Typography variant="subtitle1" color="textSecondary">Productos ({amount})</Typography>
@@ -29,4 +31,4 @@ const FeaturedCard: React.FC<Props> = (props) => {
   );
 }
 
-export default FeaturedCard;
+export default CategoryCard;

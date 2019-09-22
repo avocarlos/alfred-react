@@ -4,6 +4,7 @@ import { Typography } from '@material-ui/core';
 import FeaturedCard from '../FeaturedCard';
 import CategoryCard from '../CategoryCard';
 import { makeStyles } from '@material-ui/core/styles';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import {featured, categories} from './faker';
 
@@ -13,21 +14,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Categories: React.FC = () => {
+const Categories: React.FC<RouteComponentProps> = (props) => {
   const classes = useStyles();
+  const {history} = props;
 
-  const renderCategories = () => {
+  function onCategoryClick(name: string): void {
+    history.push(`/categories/${name}`);
+  }
+
+  function renderCategories() {
     return categories.map(({id, name, amount}) => (
       <Grid key={id} item xs={3}>
-        <CategoryCard title={name} amount={amount} />
+        <CategoryCard id={id} title={name} amount={amount} onClick={onCategoryClick} />
       </Grid>
     ));
   }
 
-  const renderFeatured = () => {
+  function renderFeatured() {
     return featured.map(({id, name, thumbnail, category}) => (
       <Grid key={id} item xs={3}>
-        <FeaturedCard title={name} thumbnail={thumbnail} category={category.name} />
+        <FeaturedCard title={name} thumbnail={thumbnail} category={category} onClick={onCategoryClick} />
       </Grid>
     ));
   }
@@ -50,4 +56,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default withRouter(Categories);

@@ -1,11 +1,15 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import LanguageIcon from '@material-ui/icons/Language';
 import { makeStyles } from '@material-ui/core/styles';
 import LogoSrc from './logo-horizontal.png';
+
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 
 interface StyleProps {
   drawer: boolean;
@@ -24,23 +28,30 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     justifyContent:'space-between'
   },
+  primaryText: {
+    flexGrow:1
+  },
   logo: {
-    maxHeight:80 - theme.spacing(4)
+    marginRight: theme.spacing(4),
+    '& img': {
+      maxHeight:80 - theme.spacing(4)
+    }
   },
   headerFix: {
     ...theme.mixins.toolbar
   }
 }));
 
-interface Props {
+interface Props extends RouteComponentProps {
   drawer: boolean;
   drawerWidth: number;
   setDrawer: (opened: boolean) => void;
 }
 
 const TopBar: React.FC<Props> = (props) => {
-  const {drawer, drawerWidth, setDrawer} = props;
+  const {drawer, drawerWidth, setDrawer, history} = props;
   const classes = useStyles({drawer, drawerWidth});
+
   return (
     <>
       <AppBar
@@ -53,7 +64,17 @@ const TopBar: React.FC<Props> = (props) => {
         <Toolbar
           classes={{root: classes.toolbar}}
         >
-          <img className={classes.logo} src={LogoSrc} alt="Best Western logo"/>
+          <a className={classes.logo} href='/'>
+            <img src={LogoSrc} alt="Best Western logo"/>
+          </a>
+          <Typography classes={{root:classes.primaryText}} variant="h6" color="textSecondary">
+            Habitacion #234
+          </Typography>
+          <IconButton
+            color="inherit"
+          >
+            <LanguageIcon />
+          </IconButton>
           {!drawer && (
             <IconButton
               color="inherit"
@@ -71,4 +92,4 @@ const TopBar: React.FC<Props> = (props) => {
   );
 };
 
-export default TopBar;
+export default withRouter(TopBar);
