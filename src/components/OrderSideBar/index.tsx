@@ -1,5 +1,5 @@
-import React from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, {useState} from 'react';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,9 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
-import {order} from './faker';
 import OrderItem from './OrderItem';
 import List from '@material-ui/core/List';
+import ConfirmationDialog from './ConfirmationDialog';
+
+import {order} from './faker';
 
 const useStyles = makeStyles({
   container: {
@@ -27,6 +29,9 @@ const useStyles = makeStyles({
     flexGrow:1,
     width:'100%'
   },
+  footer: {
+    width:'100%'
+  },
   button: {
     height:80,
     borderRadius:0,
@@ -40,10 +45,11 @@ interface Props {
 
 const OrderSideBar: React.FC<Props> = (props) => {
   const {setDrawer} = props;
+  const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
 
-  const renderItems = () => order.items.map((item) => {
-    return <OrderItem title={item.name} quantity={item.quantity} thumbnail={item.thumbnail} />
+  const renderItems = () => order.items.map(({id, name, quantity, thumbnail}) => {
+    return <OrderItem key={id} title={name} quantity={quantity} thumbnail={thumbnail} />
   });
 
   return (
@@ -51,9 +57,9 @@ const OrderSideBar: React.FC<Props> = (props) => {
       <Grid item classes={{item:classes.header}}>
         <Toolbar disableGutters classes={{root:classes.toolbar}}>
           <IconButton color="inherit" onClick={() => setDrawer(false)}>
-              <MenuIcon />
+              <ChevronRightIcon />
           </IconButton>
-          <Typography variant="h6">Orden #1</Typography>
+          <Typography variant="h6">Orden #{order.number}</Typography>
         </Toolbar>
         <Divider/>
       </Grid>
@@ -62,17 +68,19 @@ const OrderSideBar: React.FC<Props> = (props) => {
           {renderItems()}
         </List>
       </Grid>
-      <Grid item>
+      <Grid item classes={{item:classes.footer}}>
         <Button 
           variant="contained" 
           color="secondary"
           size="large" 
           fullWidth 
           classes={{root:classes.button}}
+          onClick={() => setConfirmation(true)}
         >
           Realizar Pedido
         </Button>
       </Grid>
+      {confirmation && <ConfirmationDialog order={order} setConfirmation={setConfirmation} />}
     </Grid>
   );
 }
