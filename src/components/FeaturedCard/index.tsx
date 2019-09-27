@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 interface Props {
   title: string;
-  price?: number;
+  price: number;
   category: {
     id: string;
     name: string;
@@ -26,7 +26,7 @@ const FeaturedCard: React.FC<Props> = (props) => {
   } = props;
 
   return (
-    <Card>
+    <Card elevation={2}>
       <CardActionArea onClick={() => onClick(category.id)}>
         <CardMedia
           component="img"
@@ -36,7 +36,8 @@ const FeaturedCard: React.FC<Props> = (props) => {
         />
         <CardContent>
           <Typography variant="h6" noWrap>{title}</Typography>
-          <Typography variant="subtitle1" color="textSecondary">{category.name}</Typography>
+          <Typography paragraph variant="subtitle1" color="textSecondary">{category.name}</Typography>
+          <Typography align="right" variant="h5" color="secondary">${price.toFixed(2)}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>

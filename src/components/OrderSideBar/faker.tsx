@@ -11,7 +11,7 @@ export const order = {
       id: 1,
       name: 'Emparedados'
     },
-    price: faker.commerce.price(),
+    price: Number(faker.commerce.price(0, 99)),
     thumbnail: `${faker.image.food()}?random=1`
   }, {
     id: 2,
@@ -21,7 +21,7 @@ export const order = {
       id: 1,
       name: 'Emparedados'
     },
-    price: faker.commerce.price(),
+    price: Number(faker.commerce.price(0, 99)),
     thumbnail: `${faker.image.food()}?random=2`
   }]
 };

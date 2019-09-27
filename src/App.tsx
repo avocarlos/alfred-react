@@ -8,16 +8,16 @@ import axios from "axios";
 
 
 const App: React.FC = () => {
+  useEffect( () =>{
+      const prepareRequest =  ApiClient.getHeaders('');
+      prepareRequest.then(()=>{
+          const logClientIn = axios.get('http://127.0.0.1:8000/api/auth/20190921032517/');
+          logClientIn.then((response)=>{
+              console.log("New client logged in", response);
+          });
+      });
+  });
 
-    useEffect( () =>{
-        const prepareRequest =  ApiClient.getHeaders('');
-        prepareRequest.then(()=>{
-            const logClientIn = axios.get('http://127.0.0.1:8000/api/auth/20190921032517/');
-            logClientIn.then((response)=>{
-                console.log("New client logged in", response);
-            });
-        });
-    });
   return (
     <Router>
       <MainContainer>

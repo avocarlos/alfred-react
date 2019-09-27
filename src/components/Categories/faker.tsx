@@ -51,24 +51,51 @@ export const featured = [{
   id: 1,
   name: faker.commerce.productName(),
   category: categories[0],
-  price: faker.commerce.price(),
+  price: Number(faker.commerce.price(0, 99)),
   thumbnail: `${faker.image.food()}?random=1`
 }, {
   id: 2,
   name: faker.commerce.productName(),
   category: categories[0],
-  price: faker.commerce.price(),
+  price: Number(faker.commerce.price(0, 99)),
   thumbnail: `${faker.image.food()}?random=2`
 }, {
   id: 3,
   name: faker.commerce.productName(),
   category: categories[0],
-  price: faker.commerce.price(),
+  price: Number(faker.commerce.price(0, 99)),
   thumbnail: `${faker.image.food()}?random=3`
 }, {
   id: 4,
   name: faker.commerce.productName(),
   category: categories[0],
-  price: faker.commerce.price(),
+  price: Number(faker.commerce.price(0, 99)),
   thumbnail: `${faker.image.food()}?random=4`
+}];
+
+export const orders = [{
+  id: 1,
+  number: 1,
+  status: 'Pending',
+  items: [{
+    id: 1,
+    name: faker.commerce.productName(),
+    quantity: 1,
+    category: {
+      id: 1,
+      name: 'Emparedados'
+    },
+    price: Number(faker.commerce.price(0, 99)),
+    thumbnail: `${faker.image.food()}?random=1`
+  }, {
+    id: 2,
+    name: faker.commerce.productName(),
+    quantity: 3,
+    category: {
+      id: 1,
+      name: 'Emparedados'
+    },
+    price: Number(faker.commerce.price(0, 99)),
+    thumbnail: `${faker.image.food()}?random=2`
+  }]
 }];

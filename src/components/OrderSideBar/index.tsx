@@ -10,6 +10,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import OrderItem from './OrderItem';
 import List from '@material-ui/core/List';
 import ConfirmationDialog from './ConfirmationDialog';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 
 import {order} from './faker';
 
@@ -39,18 +40,24 @@ const useStyles = makeStyles({
   }
 });
 
-interface Props {
+interface Props extends RouteComponentProps {
   setDrawer: (opened: boolean) => void;
 }
 
 const OrderSideBar: React.FC<Props> = (props) => {
-  const {setDrawer} = props;
+  const {setDrawer, history} = props;
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
 
   const renderItems = () => order.items.map(({id, name, quantity, thumbnail}) => {
     return <OrderItem key={id} title={name} quantity={quantity} thumbnail={thumbnail} />
   });
+
+  function confirmOrder() {
+    history.push('/');
+    setConfirmation(false);
+    setDrawer(false);
+  }
 
   return (
     <Grid container direction="column" classes={{container:classes.container}}>
@@ -80,9 +87,9 @@ const OrderSideBar: React.FC<Props> = (props) => {
           Realizar Pedido
         </Button>
       </Grid>
-      {confirmation && <ConfirmationDialog order={order} setConfirmation={setConfirmation} />}
+      {confirmation && <ConfirmationDialog order={order} onClose={() => setConfirmation(false)} onAccept={confirmOrder} />}
     </Grid>
   );
 }
 
-export default OrderSideBar;
+export default withRouter(OrderSideBar);
