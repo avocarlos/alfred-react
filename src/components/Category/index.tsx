@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import CategoryItem from './CategoryItem';
 
 import {category} from './faker';
@@ -14,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Category: React.FC = (props) => {
+const Category: React.FC = () => {
   const classes = useStyles();
 
   const renderItems = () => category.items.map(({id, name, thumbnail, price, description}) => {
     return (
       <Grid item xs={12}>
-        <CategoryItem key={id} title={name} thumbnail={thumbnail} price={price} subtitle={description} />
+        <CategoryItem key={id} title={name} thumbnail={thumbnail} price={price.toFixed(2)} subtitle={description} />
         <Divider/>
       </Grid>
     );
@@ -38,4 +37,4 @@ const Category: React.FC = (props) => {
   );
 };
 
-export default withRouter(Category);
+export default Category;

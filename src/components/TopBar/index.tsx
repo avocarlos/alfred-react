@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import LanguageIcon from '@material-ui/icons/Language';
 import { makeStyles } from '@material-ui/core/styles';
 import LogoSrc from './logo-horizontal.png';
-
-import {withRouter, RouteComponentProps} from 'react-router-dom';
 
 interface StyleProps {
   drawer: boolean;
@@ -42,14 +42,42 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-interface Props extends RouteComponentProps {
+interface Props {
   drawer: boolean;
   drawerWidth: number;
   setDrawer: (opened: boolean) => void;
 }
 
+const LanguageButton = () => {
+  const [menu, setMenu] = useState<HTMLElement | null>(null);
+  
+  function onIconClick(event: React.MouseEvent<HTMLButtonElement>) {
+    setMenu(event.currentTarget)
+  }
+
+  return (
+    <>
+      <IconButton color="inherit" onClick={onIconClick}>
+        <LanguageIcon />
+      </IconButton>
+      {menu &&(
+        <Menu
+          id="language"
+          anchorEl={menu}
+          keepMounted
+          open={true}
+          onClose={() => setMenu(null)}
+        >
+          <MenuItem onClick={() => setMenu(null)}>Espanol</MenuItem>
+          <MenuItem onClick={() => setMenu(null)}>Ingles</MenuItem>
+        </Menu>
+      )}
+    </>
+  );
+}
+
 const TopBar: React.FC<Props> = (props) => {
-  const {drawer, drawerWidth, setDrawer, history} = props;
+  const {drawer, drawerWidth, setDrawer} = props;
   const classes = useStyles({drawer, drawerWidth});
 
   return (
@@ -70,11 +98,7 @@ const TopBar: React.FC<Props> = (props) => {
           <Typography classes={{root:classes.primaryText}} variant="h6" color="textSecondary">
             Habitacion #234
           </Typography>
-          <IconButton
-            color="inherit"
-          >
-            <LanguageIcon />
-          </IconButton>
+          <LanguageButton />
           {!drawer && (
             <IconButton
               color="inherit"
@@ -92,4 +116,4 @@ const TopBar: React.FC<Props> = (props) => {
   );
 };
 
-export default withRouter(TopBar);
+export default TopBar;

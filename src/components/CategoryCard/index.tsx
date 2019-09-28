@@ -20,7 +20,7 @@ const CategoryCard: React.FC<Props> = (props) => {
   } = props;
 
   return (
-    <Card>
+    <Card elevation={2}>
       <CardActionArea onClick={() => onClick(id)}>
         <CardContent>
           <Typography variant="h6">{title}</Typography>
