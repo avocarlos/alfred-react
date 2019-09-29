@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -7,10 +7,11 @@ import CategoryCard from '../CategoryCard';
 import OrderCard from '../OrderCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-
-import {featured, categories, orders} from './faker';
-
+import useLanguage from '../../hooks/useLanguage';
 import { OrderStatus } from '../OrderCard';
+import StoreContext from '../../context';
+
+import {featured, categories} from './faker';
 
 const useStyles = makeStyles((theme) => ({
   bottomSpace: {
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories: React.FC<RouteComponentProps> = (props) => {
   const classes = useStyles();
+  const { state: { orders } } = useContext(StoreContext);
+  const {t} = useLanguage();
   const {history} = props;
 
   function onCategoryClick(name: string): void {
@@ -52,21 +55,23 @@ const Categories: React.FC<RouteComponentProps> = (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} classes={{item: classes.bottomSpace}}>
-        <Typography paragraph variant="h5">Ordenes Realizadas</Typography>
-        <Grid container spacing={4} classes={{container: classes.bottomSpace}}>
-          {renderOrders()}
+      {!!orders.length && (
+        <Grid item xs={12} classes={{item: classes.bottomSpace}}>
+          <Typography paragraph variant="h5">{t('categories.orders.title')}</Typography>
+          <Grid container spacing={4} classes={{container: classes.bottomSpace}}>
+            {renderOrders()}
+          </Grid>
+          <Divider/>
         </Grid>
-        <Divider/>
-      </Grid>
+      )}
       <Grid item xs={12} classes={{item: classes.bottomSpace}}>
-        <Typography paragraph variant="h5">Recomendados</Typography>
+        <Typography paragraph variant="h5">{t('categories.featured.title')}</Typography>
         <Grid container spacing={4}>
           {renderFeatured()}
         </Grid>
       </Grid>
       <Grid item xs={12} classes={{item: classes.bottomSpace}}>
-        <Typography paragraph variant="h5">Categorias</Typography>
+        <Typography paragraph variant="h5">{t('categories.categories.title')}</Typography>
         <Grid container spacing={4}>
           {renderCategories()}
         </Grid>

@@ -4,6 +4,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import SummaryDialog from './SummaryDialog';
+import useLanguage from '../../hooks/useLanguage';
+
+import { Order } from '../../reducer';
 
 enum statuses {
   Pending = 'Recibida',
@@ -14,25 +17,6 @@ enum statuses {
 
 export type OrderStatus = 'Pending' | 'In Progress' | 'Finished' | 'Delivered';
 
-interface Item {
-  id: string | number;
-  name: string;
-  quantity: number;
-  category: {
-    id: string | number;
-    name: string;
-  };
-  price: number;
-  thumbnail: string;
-}
-
-export interface Order {
-  id: string | number;
-  status: string;
-  number: number;
-  items:  Array<Item>;
-};
-
 interface Props {
   status: OrderStatus;
   number: number;
@@ -41,6 +25,7 @@ interface Props {
 
 const OrderCard: React.FC<Props> = (props) => {
   const [summary, setSummary] = useState(false);
+  const {t} = useLanguage();
   const {
     number,
     status,
@@ -51,7 +36,7 @@ const OrderCard: React.FC<Props> = (props) => {
     <Card elevation={2}>
       <CardActionArea onClick={() => setSummary(true)}>
         <CardContent>
-          <Typography variant="h6">Orden #{number}</Typography>
+          <Typography variant="h6">{t('categories.orders.order', {number})}</Typography>
           <Typography variant="subtitle1" color="textSecondary">{statuses[status]}</Typography>
         </CardContent>
       </CardActionArea>

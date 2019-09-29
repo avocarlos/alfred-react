@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,8 +11,9 @@ import OrderItem from './OrderItem';
 import List from '@material-ui/core/List';
 import ConfirmationDialog from './ConfirmationDialog';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
+import useLanguage from '../../hooks/useLanguage';
 
-import {order} from './faker';
+import StoreContext from '../../context';
 
 const useStyles = makeStyles({
   container: {
@@ -46,10 +47,12 @@ interface Props extends RouteComponentProps {
 
 const OrderSideBar: React.FC<Props> = (props) => {
   const {setDrawer, history} = props;
+  const { state: { order, orders } } = useContext(StoreContext);
+  const {t} = useLanguage();
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
 
-  const renderItems = () => order.items.map(({id, name, quantity, thumbnail}) => {
+  const renderItems = () => order && order.items.map(({id, name, quantity, thumbnail}) => {
     return <OrderItem key={id} title={name} quantity={quantity} thumbnail={thumbnail} />
   });
 
@@ -66,7 +69,7 @@ const OrderSideBar: React.FC<Props> = (props) => {
           <IconButton color="inherit" onClick={() => setDrawer(false)}>
               <ChevronRightIcon />
           </IconButton>
-          <Typography variant="h6">Orden #{order.number}</Typography>
+          <Typography variant="h6">{t('root.order.title', {number: order.number})}</Typography>
         </Toolbar>
         <Divider/>
       </Grid>
@@ -76,7 +79,8 @@ const OrderSideBar: React.FC<Props> = (props) => {
         </List>
       </Grid>
       <Grid item classes={{item:classes.footer}}>
-        <Button 
+        <Button
+          disabled={!order.items.length}
           variant="contained" 
           color="secondary"
           size="large" 
@@ -84,7 +88,7 @@ const OrderSideBar: React.FC<Props> = (props) => {
           classes={{root:classes.button}}
           onClick={() => setConfirmation(true)}
         >
-          Realizar Pedido
+          {t('root.order.submit')}
         </Button>
       </Grid>
       {confirmation && <ConfirmationDialog order={order} onClose={() => setConfirmation(false)} onAccept={confirmOrder} />}
