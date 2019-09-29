@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/alfred-react/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/alfred-react/static/js/main.2f0fe33e.chunk.js",
+    "main.js.map": "/alfred-react/static/js/main.2f0fe33e.chunk.js.map",
+    "runtime-main.js": "/alfred-react/static/js/runtime-main.a9040a7a.js",
+    "runtime-main.js.map": "/alfred-react/static/js/runtime-main.a9040a7a.js.map",
+    "static/js/2.5b7809cd.chunk.js": "/alfred-react/static/js/2.5b7809cd.chunk.js",
+    "static/js/2.5b7809cd.chunk.js.map": "/alfred-react/static/js/2.5b7809cd.chunk.js.map",
+    "index.html": "/alfred-react/index.html",
+    "precache-manifest.1bc12fafba65675b0f3e041b4bb65248.js": "/alfred-react/precache-manifest.1bc12fafba65675b0f3e041b4bb65248.js",
+    "service-worker.js": "/alfred-react/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/alfred-react/static/css/main.5ecd60fb.chunk.css.map",
+    "static/media/logo-horizontal.png": "/alfred-react/static/media/logo-horizontal.ce8b650f.png"
+  }
+}
