@@ -6,6 +6,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
+import useLanguage from '../../hooks/useLanguage';
 
 const useStyles = makeStyles({
   tableFooter: {
@@ -32,19 +33,20 @@ interface Props {
 }
 
 const OrderSummary: React.FC<Props> = ({items}) => {
+  const {t} = useLanguage();
   const classes = useStyles();
   const subtotal = items.reduce((acc, item) => acc += (item.price * item.quantity), 0)
   const itbms = subtotal * TAX_RATE;
   const total = subtotal + itbms;
 
   const footer = [{
-    name: 'Subtotal',
+    name: t('root.summary.subtotal'),
     value: subtotal
   }, {
-    name: 'ITBMS',
+    name: t('root.summary.tax'),
     value: itbms
   }, {
-    name: 'Total',
+    name: t('root.summary.total'),
     value: total
   }];
 
@@ -52,8 +54,8 @@ const OrderSummary: React.FC<Props> = ({items}) => {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell colSpan={3}>Pedido</TableCell>
-          <TableCell align="right">Precio</TableCell>
+          <TableCell colSpan={3}>{t('root.summary.item')}</TableCell>
+          <TableCell align="right">{t('root.summary.price')}</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

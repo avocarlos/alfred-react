@@ -11,6 +11,7 @@ import OrderItem from './OrderItem';
 import List from '@material-ui/core/List';
 import ConfirmationDialog from './ConfirmationDialog';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
+import useLanguage from '../../hooks/useLanguage';
 
 import {order} from './faker';
 
@@ -46,6 +47,7 @@ interface Props extends RouteComponentProps {
 
 const OrderSideBar: React.FC<Props> = (props) => {
   const {setDrawer, history} = props;
+  const {t} = useLanguage();
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
 
@@ -66,7 +68,7 @@ const OrderSideBar: React.FC<Props> = (props) => {
           <IconButton color="inherit" onClick={() => setDrawer(false)}>
               <ChevronRightIcon />
           </IconButton>
-          <Typography variant="h6">Orden #{order.number}</Typography>
+          <Typography variant="h6">{t('root.order.title', {number: order.number})}</Typography>
         </Toolbar>
         <Divider/>
       </Grid>
@@ -84,7 +86,7 @@ const OrderSideBar: React.FC<Props> = (props) => {
           classes={{root:classes.button}}
           onClick={() => setConfirmation(true)}
         >
-          Realizar Pedido
+          {t('root.order.submit')}
         </Button>
       </Grid>
       {confirmation && <ConfirmationDialog order={order} onClose={() => setConfirmation(false)} onAccept={confirmOrder} />}

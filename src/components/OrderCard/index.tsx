@@ -4,6 +4,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import SummaryDialog from './SummaryDialog';
+import useLanguage from '../../hooks/useLanguage';
 
 enum statuses {
   Pending = 'Recibida',
@@ -41,6 +42,7 @@ interface Props {
 
 const OrderCard: React.FC<Props> = (props) => {
   const [summary, setSummary] = useState(false);
+  const {t} = useLanguage();
   const {
     number,
     status,
@@ -51,7 +53,7 @@ const OrderCard: React.FC<Props> = (props) => {
     <Card elevation={2}>
       <CardActionArea onClick={() => setSummary(true)}>
         <CardContent>
-          <Typography variant="h6">Orden #{number}</Typography>
+          <Typography variant="h6">{t('categories.orders.order', {number})}</Typography>
           <Typography variant="subtitle1" color="textSecondary">{statuses[status]}</Typography>
         </CardContent>
       </CardActionArea>

@@ -5,6 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Summary from '../OrderSummary';
+import useLanguage from '../../hooks/useLanguage';
 import { Order } from '.';
 
 
@@ -14,16 +15,17 @@ interface Props {
 }
 
 const SummaryDialog: React.FC<Props> = (props) => {
+  const {t} = useLanguage();
   const {order, setSummary} = props;
 
   return (
     <Dialog open={true} onClose={() => setSummary(false)}>
-      <DialogTitle>Resumen orden #{order.number}</DialogTitle>
+      <DialogTitle>{t('root.dialog.summary.title', {number: order.number})}</DialogTitle>
       <DialogContent>
         <Summary items={order.items}/>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setSummary(false)}>Cerrar</Button>
+        <Button onClick={() => setSummary(false)}>{t('root.dialog.summary.close')}</Button>
       </DialogActions>
     </Dialog>
   );
