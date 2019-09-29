@@ -38,7 +38,7 @@ interface Props {
 
 const LanguageButton = () => {
   const [menu, setMenu] = useState<HTMLElement | null>(null);
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(StoreContext);
   const { t, setLanguage } = useLanguage();
 
   function onIconClick(event: React.MouseEvent<HTMLButtonElement>) {
@@ -73,6 +73,7 @@ const LanguageButton = () => {
 
 const TopBar: React.FC<Props> = (props) => {
   const {drawer, setDrawer} = props;
+  const { state } = useContext(StoreContext);
   const { t } = useLanguage();
   const classes = useStyles();
 
@@ -94,7 +95,7 @@ const TopBar: React.FC<Props> = (props) => {
               color="inherit"
               onClick={() => setDrawer(!drawer)}
             >
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={state.order.totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>

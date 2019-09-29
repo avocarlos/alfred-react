@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import Categories from './components/Categories';
 import Category from './components/Category';
-import StoreReducer, { ActionEnum as ReducerActions, initialState } from './reducers';
+import StoreReducer, { ActionEnum as ReducerActions, initialState } from './reducer';
 import StoreContext from './context';
 import ApiClient from './libs/apiClient';
 import axios from "axios";

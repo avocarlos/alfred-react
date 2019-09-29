@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,7 +13,7 @@ import ConfirmationDialog from './ConfirmationDialog';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
 
-import {order} from './faker';
+import StoreContext from '../../context';
 
 const useStyles = makeStyles({
   container: {
@@ -47,11 +47,12 @@ interface Props extends RouteComponentProps {
 
 const OrderSideBar: React.FC<Props> = (props) => {
   const {setDrawer, history} = props;
+  const { state: { order, orders } } = useContext(StoreContext);
   const {t} = useLanguage();
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
 
-  const renderItems = () => order.items.map(({id, name, quantity, thumbnail}) => {
+  const renderItems = () => order && order.items.map(({id, name, quantity, thumbnail}) => {
     return <OrderItem key={id} title={name} quantity={quantity} thumbnail={thumbnail} />
   });
 
@@ -78,7 +79,8 @@ const OrderSideBar: React.FC<Props> = (props) => {
         </List>
       </Grid>
       <Grid item classes={{item:classes.footer}}>
-        <Button 
+        <Button
+          disabled={!order.items.length}
           variant="contained" 
           color="secondary"
           size="large" 

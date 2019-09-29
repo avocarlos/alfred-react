@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import StoreContext from '../context';
-import { ActionEnum as ReducerAction } from '../reducers';
+import { ActionEnum as ReducerAction } from '../reducer';
 
 import I18n, { Languages } from '../i18n';
 

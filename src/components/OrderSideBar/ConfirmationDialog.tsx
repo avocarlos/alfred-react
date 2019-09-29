@@ -6,24 +6,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Summary from '../OrderSummary';
 import useLanguage from '../../hooks/useLanguage';
-interface Item {
-  id: string | number;
-  name: string;
-  quantity: number;
-  category: {
-    id: string | number;
-    name: string;
-  };
-  price: number;
-  thumbnail: string;
-}
+import { Order } from '../../reducer';
 
 interface Props {
-  order: {
-    id: string | number;
-    number: number;
-    items:  Array<Item>;
-  };
+  order: Order;
   onClose: () => void;
   onAccept: () => void;
 }

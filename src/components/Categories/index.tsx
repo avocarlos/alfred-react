@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -8,10 +8,10 @@ import OrderCard from '../OrderCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
-
-import {featured, categories, orders} from './faker';
-
 import { OrderStatus } from '../OrderCard';
+import StoreContext from '../../context';
+
+import {featured, categories} from './faker';
 
 const useStyles = makeStyles((theme) => ({
   bottomSpace: {
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories: React.FC<RouteComponentProps> = (props) => {
   const classes = useStyles();
+  const { state: { orders } } = useContext(StoreContext);
   const {t} = useLanguage();
   const {history} = props;
 
@@ -54,13 +55,15 @@ const Categories: React.FC<RouteComponentProps> = (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} classes={{item: classes.bottomSpace}}>
-        <Typography paragraph variant="h5">{t('categories.orders.title')}</Typography>
-        <Grid container spacing={4} classes={{container: classes.bottomSpace}}>
-          {renderOrders()}
+      {!!orders.length && (
+        <Grid item xs={12} classes={{item: classes.bottomSpace}}>
+          <Typography paragraph variant="h5">{t('categories.orders.title')}</Typography>
+          <Grid container spacing={4} classes={{container: classes.bottomSpace}}>
+            {renderOrders()}
+          </Grid>
+          <Divider/>
         </Grid>
-        <Divider/>
-      </Grid>
+      )}
       <Grid item xs={12} classes={{item: classes.bottomSpace}}>
         <Typography paragraph variant="h5">{t('categories.featured.title')}</Typography>
         <Grid container spacing={4}>

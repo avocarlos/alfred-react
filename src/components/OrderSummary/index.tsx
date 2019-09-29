@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import useLanguage from '../../hooks/useLanguage';
+import { Order } from '../../reducer';
 
 const useStyles = makeStyles({
   tableFooter: {
@@ -16,20 +17,8 @@ const useStyles = makeStyles({
 
 const TAX_RATE = 0.1;
 
-interface Item {
-  id: string | number;
-  name: string;
-  quantity: number;
-  category: {
-    id: string | number;
-    name: string;
-  };
-  price: number;
-  thumbnail: string;
-}
-
 interface Props {
-  items: Item[];
+  items: Order['items'];
 }
 
 const OrderSummary: React.FC<Props> = ({items}) => {

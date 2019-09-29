@@ -6,9 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Summary from '../OrderSummary';
 import useLanguage from '../../hooks/useLanguage';
-import { Order } from '.';
-
-
+import { Order } from '../../reducer';
 interface Props {
   order: Order;
   setSummary: (open: boolean) => void

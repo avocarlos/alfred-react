@@ -1,13 +1,13 @@
 import React, { Dispatch } from 'react';
-import { State, Action } from '../reducers';
+import { State, Action, initialState } from '../reducer';
 
 export interface Context {
-  state: Partial<State>;
+  state: State;
   dispatch: Dispatch<Action>;
 }
 
 const initialContext = {
-  state: {},
+  state: initialState,
   dispatch: () => 0
 }
 

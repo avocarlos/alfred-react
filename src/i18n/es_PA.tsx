@@ -19,7 +19,7 @@ export default {
     dialog: {
       confirmation: {
         title: (args: {number: number}) =>  `Confirmar Orden #${args.number}`,
-        confirm: 'Confirmar',
+        submit: 'Confirmar',
         cancel: 'Cancelar'
       },
       summary: {
