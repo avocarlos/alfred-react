@@ -1,5 +1,6 @@
 import React, { Dispatch } from 'react';
-import { State, Action, initialState } from '../reducer';
+import { State, initialState } from '../reducer';
+import { Action } from '../reducer/actions';
 
 export interface Context {
   state: State;

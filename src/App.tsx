@@ -2,15 +2,15 @@ import React, {useEffect, useReducer} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import Categories from './components/Categories';
+import WelcomeScreen from './components/WelcomeScreen';
 import Category from './components/Category';
-import StoreReducer, { ActionEnum as ReducerActions, initialState } from './reducer';
+import StoreReducer, { initialState } from './reducer';
+import { setLanguage } from './reducer/actions';
 import StoreContext from './context';
 import ApiClient from './libs/apiClient';
 import axios from "axios";
 
 import { Languages } from './i18n';
-
-const { SET_LANGUAGE } = ReducerActions;
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(StoreReducer, initialState);
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const language = localStorage.getItem('sessionLanguage') as Languages;
     if (language && language !== state.language) {
-      dispatch({type: SET_LANGUAGE, payload: {language}});
+      dispatch(setLanguage(language));
     }
   }, [state.language]);
 
@@ -37,6 +37,7 @@ const App: React.FC = () => {
       <StoreContext.Provider value={{state, dispatch}}>
         <MainContainer>
           <Route path="/" exact component={Categories}/>
+          <Route path="/welcome" exact component={WelcomeScreen}/>
           <Route path="/categories/:categoryId" component={Category}/>
         </MainContainer>
       </StoreContext.Provider>

@@ -1,13 +1,12 @@
 import {useState, useEffect, useContext} from 'react';
 import StoreContext from '../context';
-import { ActionEnum as ReducerAction } from '../reducer';
+import { setLanguage } from '../reducer/actions';
 
 import I18n, { Languages } from '../i18n';
 
-const { SET_LANGUAGE } = ReducerAction;
-
 function getValue(keys: string, args = {}, language: Languages): string {
   const splittedKeys = keys.split('.');
+  console.log(I18n[language]);
   // @ts-ignore
   return splittedKeys.reduce((acc, key) => {
     // @ts-ignore
@@ -22,21 +21,21 @@ function getValue(keys: string, args = {}, language: Languages): string {
 
 
 const useLanguage =  () => {
-  const [language, setLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState();
   const {state, dispatch} = useContext(StoreContext);
 
   useEffect(() => {
-    if (language && (state.language !== language)) {
-      dispatch({type: SET_LANGUAGE, payload: {language}});
-      localStorage.setItem('sessionLanguage', language);
+    if (selectedLanguage && (state.language !== selectedLanguage)) {
+      dispatch(setLanguage(selectedLanguage));
+      localStorage.setItem('sessionLanguage', selectedLanguage);
     }
-  }, [language, state.language, dispatch]);
+  }, [selectedLanguage, state.language, dispatch]);
 
   function t(key: string, args = {}) {
-    return getValue(key, args, state.language || 'es' as Languages)
+    return getValue(key, args, state.language || Languages.ES)
   };
 
-  return {t, setLanguage};
+  return {t, setSelectedLanguage};
 }
 
 export default useLanguage;

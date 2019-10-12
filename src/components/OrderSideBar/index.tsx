@@ -47,7 +47,7 @@ interface Props extends RouteComponentProps {
 
 const OrderSideBar: React.FC<Props> = (props) => {
   const {setDrawer, history} = props;
-  const { state: { order, orders } } = useContext(StoreContext);
+  const { state: { order } } = useContext(StoreContext);
   const {t} = useLanguage();
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();

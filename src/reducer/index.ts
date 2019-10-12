@@ -1,4 +1,5 @@
 import { Languages } from '../i18n';
+import { Action } from './actions';
 
 interface Item {
   id?: string;
@@ -15,36 +16,6 @@ export interface Order {
   items:  Item[];
   totalItems: number;
 }
-
-export enum ActionEnum {
-  SET_LANGUAGE = 'SET_LANGUAGE',
-  SET_ORDER = 'SET_ORDER',
-  SET_ORDERS = 'SET_ORDERS'
-}
-
-type LanguageAction = {
-  type: typeof ActionEnum.SET_LANGUAGE;
-  payload: {
-    language: Languages;
-  };
-}
-
-type OrderAction = {
-  type: typeof ActionEnum.SET_ORDER;
-  payload: {
-    order: Order;
-  };
-}
-
-type OrdersAction = {
-  type: typeof ActionEnum.SET_ORDERS;
-  payload: {
-    orders: Order[];
-  };
-}
-
-export type Action = LanguageAction | OrderAction | OrdersAction;
-
 
 export interface State {
   language: Languages;
@@ -65,24 +36,28 @@ export const initialState = {
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'SET_LANGUAGE':
-      return Object.assign({}, state, action.payload);
+      return {...state, ...action.payload};
     case 'SET_ORDERS':
       const {payload: {orders}} = action;
       
-      return Object.assign({}, state, {
-        orders: orders,
-        order: Object.assign({}, state.order, {
+      return {
+        ...state,
+        orders,
+        order: {
+          ...state.order,
           number: orders.length + 1
-        })
-      });
+        }
+      };
     case 'SET_ORDER':
       const {payload: {order}} = action;
 
-      return Object.assign({}, state, {
-        order: Object.assign(order, {
+      return {
+        ...state, 
+        order: {
+          ...order,
           totalItems: order.items.reduce((acc, item) => acc += item.quantity, 0)
-        })
-      });
+        }
+      };
     default:
       return state;
   }

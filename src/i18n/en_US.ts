@@ -1,9 +1,5 @@
 export default {
   root: {
-    language: {
-      en: 'English',
-      es: 'Spanish'
-    },
     order: {
       title: (args: {number: number}) => `Order #${args.number}`,
       submit: 'Place order'

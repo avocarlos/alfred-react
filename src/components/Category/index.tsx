@@ -5,8 +5,8 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import CategoryItem from './CategoryItem';
 import StoreContext from '../../context';
-import { ActionEnum as ReducerAction } from '../../reducer';
-import {category} from './faker';
+import { setOrder } from '../../reducer/actions';
+import { category } from './faker';
 
 export interface Item {
   name: string;
@@ -37,7 +37,7 @@ const Category: React.FC = () => {
         order.items.push(item);
       }
 
-      dispatch({type: ReducerAction.SET_ORDER, payload: {order}})
+      dispatch(setOrder(order));
     }
   }
 

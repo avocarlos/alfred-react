@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LogoSrc from './logo-horizontal.png';
 import useLanguage from '../../hooks/useLanguage';
 import StoreContext from '../../context';
+import { Languages } from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -31,6 +32,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const languages = [{
+  code: Languages.ES,
+  label: 'Español'
+}, {
+  code: Languages.US,
+  label: 'English'
+}, {
+  code: Languages.ZH,
+  label: '中文'
+}]
+
 interface Props {
   drawer: boolean;
   setDrawer: (opened: boolean) => void;
@@ -39,14 +51,15 @@ interface Props {
 const LanguageButton = () => {
   const [menu, setMenu] = useState<HTMLElement | null>(null);
   const { state } = useContext(StoreContext);
-  const { t, setLanguage } = useLanguage();
+  const { setSelectedLanguage } = useLanguage();
+  console.log(state)
 
   function onIconClick(event: React.MouseEvent<HTMLButtonElement>) {
     setMenu(event.currentTarget)
   }
 
   function onLanguageClick(language: string) {
-    setLanguage(language);
+    setSelectedLanguage(language);
     setMenu(null)
   }
 
@@ -63,8 +76,17 @@ const LanguageButton = () => {
           open={true}
           onClose={() => setMenu(null)}
         >
-          <MenuItem selected={state.language === 'es'} onClick={() => onLanguageClick('es')}>{t('root.language.es')}</MenuItem>
-          <MenuItem selected={state.language === 'en'} onClick={() => onLanguageClick('en')}>{t('root.language.en')}</MenuItem>
+          { 
+            languages.map(({code, label}) => (
+              <MenuItem 
+                key={code}
+                selected={state.language === code} 
+                onClick={() => onLanguageClick(code)}
+              >
+                {label}
+              </MenuItem>
+            ))
+          }
         </Menu>
       )}
     </>
