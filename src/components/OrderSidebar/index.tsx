@@ -7,11 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
-import OrderItem from './OrderItem';
+import MenuItem from './MenuItem';
 import List from '@material-ui/core/List';
 import ConfirmationDialog from './ConfirmationDialog';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
+import {setOrder, setOrders} from '../../reducer/actions';
+import { Order } from '../../reducer';
 
 import StoreContext from '../../context';
 
@@ -28,6 +30,8 @@ const useStyles = makeStyles({
     paddingRight:8
   },
   list: {
+    height:150,
+    overflowY:'scroll',
     flexGrow:1,
     width:'100%'
   },
@@ -46,20 +50,50 @@ interface Props extends RouteComponentProps {
 }
 
 const OrderSideBar: React.FC<Props> = (props) => {
-  const {setDrawer, history} = props;
-  const { state: { order } } = useContext(StoreContext);
+  const {setDrawer} = props;
+  const { state: { order, orders }, dispatch } = useContext(StoreContext);
   const {t} = useLanguage();
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
 
   const renderItems = () => order && order.items.map(({id, name, quantity, thumbnail}) => {
-    return <OrderItem key={id} title={name} quantity={quantity} thumbnail={thumbnail} />
+    return <MenuItem 
+      key={id}
+      itemId={id}
+      title={name}
+      quantity={quantity}
+      thumbnail={thumbnail}
+      onRemove={removeItem}
+      onQuantityChange={changeQuantity}
+    />
   });
 
-  function confirmOrder() {
-    history.push('/');
+  function confirmOrder():void {
+    dispatch(setOrders([...orders, order]));
     setConfirmation(false);
     setDrawer(false);
+  }
+
+  function removeItem(itemId: string): void {
+    dispatch(setOrder({
+      ...order,
+      items: order.items.filter(({id}) => id !== itemId)
+    }));
+  }
+
+  function changeQuantity(itemId: string, quantity: number): void {
+    const newItems = order.items.reduce<Order['items']>((acc, item) => {
+      if (item.id === itemId) {
+        item.quantity = quantity;
+      }
+      acc.push(item);
+      return acc;
+    }, []);
+
+    dispatch(setOrder({
+      ...order,
+      items: newItems
+    }));
   }
 
   return (

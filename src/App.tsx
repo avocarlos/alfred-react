@@ -3,13 +3,15 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import HomeScreen from './components/HomeScreen';
 import WelcomeScreen from './components/WelcomeScreen';
-import Category from './components/Category';
+import MenuScreen from './components/MenuScreen';
 import StoreReducer, { initialState } from './reducer';
 import { setLanguage } from './reducer/actions';
 import StoreContext from './context';
 import ApiClient from './lib/apiClient';
 
 import { Languages } from './i18n';
+
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(StoreReducer, initialState);
@@ -26,12 +28,12 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Router>
+    <Router basename={PUBLIC_URL}>
       <StoreContext.Provider value={{state, dispatch}}>
         <MainContainer>
           <Route path="/" exact component={HomeScreen}/>
           <Route path="/welcome" exact component={WelcomeScreen}/>
-          <Route path="/categories/:categoryId" component={Category}/>
+          <Route path="/categories/:categoryId" component={MenuScreen}/>
         </MainContainer>
       </StoreContext.Provider>
     </Router>

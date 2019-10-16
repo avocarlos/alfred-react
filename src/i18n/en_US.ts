@@ -2,6 +2,7 @@ export default {
   root: {
     order: {
       title: (args: {number: number}) => `Order #${args.number}`,
+      remove: 'Remove',
       submit: 'Place order'
     },
     room: (args: {number: number}) =>  `Room #${args.number}`,
@@ -24,17 +25,26 @@ export default {
       }
     }
   },
-  categories: {
-    orders: {
-      title: 'Active Orders',
-      order: (args: {number: number}) => `Order #${args.number}`
+  home: {
+    categories: {
+      restaurant: 'Restaurant',
+      coffee: 'Cafe',
+      dessert: 'Postres',
+      shop: 'Tienda de regalos',
+      roomService: 'Servicio al cuarto',
+      promociones: 'Promociones'
+    },
+    deals: {
+      title: 'Deals',
+      subtitle: 'Take advantage of these great offers'
+    },
+    events: {
+      title: 'Events',
+      subtitle: 'These are the events of this week'
     },
     featured: {
-      title: 'Featured'
-    },
-    categories: {
-      title: 'Categories',
-      products: (args: {count: number}) => `Products (${args.count})`
+      title: 'We recommend',
+      subtitle: 'Suggestions from our chef'
     }
   }
 };

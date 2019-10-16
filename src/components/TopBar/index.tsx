@@ -8,11 +8,14 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LanguageIcon from '@material-ui/icons/Language';
+import InboxIcon from '@material-ui/icons/Inbox';
 import { makeStyles } from '@material-ui/core/styles';
 import LogoSrc from './logo-horizontal.png';
 import useLanguage from '../../hooks/useLanguage';
 import StoreContext from '../../context';
 import { Languages } from '../../i18n';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { orders } from '../HomeScreen/faker';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -52,7 +55,6 @@ const LanguageButton = () => {
   const [menu, setMenu] = useState<HTMLElement | null>(null);
   const { state } = useContext(StoreContext);
   const { setSelectedLanguage } = useLanguage();
-  console.log(state)
 
   function onIconClick(event: React.MouseEvent<HTMLButtonElement>) {
     setMenu(event.currentTarget)
@@ -93,11 +95,16 @@ const LanguageButton = () => {
   );
 }
 
-const TopBar: React.FC<Props> = (props) => {
+const TopBar: React.FC<Props & RouteComponentProps> = (props) => {
   const {drawer, setDrawer} = props;
   const { state } = useContext(StoreContext);
   const { t } = useLanguage();
   const classes = useStyles();
+
+  function onLogoClick(event: React.MouseEvent<HTMLElement>) {
+    event.preventDefault();
+    props.history.push(`/`);
+  }
 
   return (
     <>
@@ -105,13 +112,23 @@ const TopBar: React.FC<Props> = (props) => {
         <Toolbar
           classes={{root: classes.toolbar}}
         >
-          <a className={classes.logo} href='/'>
+          <a className={classes.logo} onClick={onLogoClick} href="/">
             <img src={LogoSrc} alt="Best Western logo"/>
           </a>
           <Typography classes={{root:classes.primaryText}} variant="h6" color="textSecondary">
             {t('root.room', {number: 15})}
           </Typography>
           <LanguageButton />
+          {!!state.orders.length && (
+            <IconButton
+              color="inherit"
+              onClick={() => setDrawer(!drawer)}
+            >
+              <Badge variant="dot" color="error">
+                <InboxIcon />
+              </Badge>
+            </IconButton>
+          )}
           {!drawer && (
             <IconButton
               color="inherit"
@@ -129,4 +146,4 @@ const TopBar: React.FC<Props> = (props) => {
   );
 };
 
-export default TopBar;
+export default withRouter(TopBar);

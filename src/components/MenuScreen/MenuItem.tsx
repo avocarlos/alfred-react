@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
-import { Item } from './index';
+import { Order } from '../../reducer';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -21,23 +21,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 interface Props {
+  itemId: string;
   title: string;
   subtitle?: string;
   thumbnail: string;
   price: number;
-  onClick: (item: Item) => void;
+  onClick: (item: Order['items'][0]) => void;
 }
 
-const CategoryItem: React.FC<Props> = ({thumbnail, title, subtitle, price, onClick}) => {
+const MenuItem: React.FC<Props> = ({itemId, thumbnail, title, subtitle, price, onClick}) => {
   const classes = useStyles();
 
   function onAddItem() {
     const item = {
+      id: itemId,
       name: title,
       quantity: 1,
       thumbnail,
       price
-    }
+    };
     onClick(item);
   }
 
@@ -62,4 +64,4 @@ const CategoryItem: React.FC<Props> = ({thumbnail, title, subtitle, price, onCli
   );
 }
 
-export default CategoryItem;
+export default MenuItem;

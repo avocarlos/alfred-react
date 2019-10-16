@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TopBar from '../TopBar';
-import OrderSideBar from '../OrderSideBar';
+import OrderSidebar from '../OrderSidebar';
 import Drawer from '@material-ui/core/Drawer';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,7 +36,7 @@ const MainContainer: React.FC<RouteComponentProps> = (props) => {
         classes={{paper: classes.drawer}}
         onClose={() => setDrawer(false)}
       >
-        <OrderSideBar setDrawer={setDrawer}/>
+        <OrderSidebar setDrawer={setDrawer}/>
       </Drawer>
     </div>
   );

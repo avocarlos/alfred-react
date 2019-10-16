@@ -2,7 +2,7 @@ import { Languages } from '../i18n';
 import { Action } from './actions';
 
 interface Item {
-  id?: string;
+  id: string;
   name: string;
   quantity: number;
   price: number;
@@ -44,8 +44,9 @@ function reducer(state: State, action: Action): State {
         ...state,
         orders,
         order: {
-          ...state.order,
-          number: orders.length + 1
+          number: orders.length + 1,
+          items: [],
+          totalItems: 0
         }
       };
     case 'SET_ORDER':

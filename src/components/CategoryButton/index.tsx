@@ -13,7 +13,6 @@ interface Props {
 
 interface IconProps {
   color: 'primary';
-  fontSize: 'large';
 }
 
 interface IconDictionary {
@@ -58,8 +57,8 @@ interface CategoryIconProps {
 const CategoryIcon = ({id, onClick}: CategoryIconProps) => {
   const { color, Icon } = Icons[id];
   return (
-    <Fab size="large" style={{backgroundColor: color, boxShadow: 'unset', width: 72, height: 72}} onClick={onClick}>
-      <Icon color="primary" fontSize="large" />
+    <Fab size="large" style={{backgroundColor: color, boxShadow: 'unset'}} onClick={onClick}>
+      <Icon color="primary" />
     </Fab>
   );
 };
@@ -71,14 +70,14 @@ const CategoryButton: React.FC<Props> = (props) => {
     onClick
   } = props;
 
-  const onIconClick = () => onClick(title);
+  const onIconClick = () => onClick(id);
 
   return (
     <Box display="flex" alignItems="center" flexDirection="column">
       <Box mb={2}>
         <CategoryIcon id={id} onClick={onIconClick}/>
       </Box>
-      <Typography variant="subtitle1">{title}</Typography>
+      <Typography align="center" variant="subtitle2">{title}</Typography>
     </Box>
   );
 }

@@ -2,6 +2,7 @@ export default {
   root: {
     order: {
       title: (args: {number: number}) => `订购 #${args.number}`,
+      remove: '去掉',
       submit: '下订单'
     },
     room: (args: {number: number}) =>  `房间 #${args.number}`,
@@ -24,17 +25,26 @@ export default {
       }
     }
   },
-  categories: {
-    orders: {
-      title: '有效订单',
-      order: (args: {number: number}) => `订购 #${args.number}`
+  home: {
+    categories: {
+      restaurant: 'Restaurant',
+      coffee: 'Cafe',
+      dessert: 'Postres',
+      shop: 'Tienda de regalos',
+      roomService: 'Servicio al cuarto',
+      promociones: 'Promociones'
+    },
+    deals: {
+      title: '促销活动',
+      subtitle: '利用我们为您提供的这些优惠'
+    },
+    events: {
+      title: '大事记',
+      subtitle: '这些是本周的活动'
     },
     featured: {
-      title: '推荐的'
-    },
-    categories: {
-      title: '分类',
-      products: (args: {count: number}) => `产品展示 (${args.count})`
+      title: '推荐的',
+      subtitle: '主厨的建议'
     }
   }
 };
