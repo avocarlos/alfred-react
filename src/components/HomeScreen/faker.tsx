@@ -2,49 +2,22 @@ import faker from 'faker';
 
 export const categories = [{
   id: '1',
-  name: 'Emparedados',
-  amount: 4,
-  items: [{
-    id: 1,
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    thumbnail: `${faker.image.food()}?random=1`
-  }, {
-    id: 2,
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    thumbnail: `${faker.image.food()}?random=2`
-  }, {
-    id: 3,
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    thumbnail: `${faker.image.food()}?random=3`
-  }, {
-    id: 4,
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    thumbnail: `${faker.image.food()}?random=4`
-  }]
+  name: 'Restaurant'
 }, {
   id: '2',
-  name: 'Ensaladas',
-  amount: 7
+  name: 'Cafe'
 }, {
   id: '3',
-  name: 'Platos Fuertes',
-  amount: 5
+  name: 'Postres'
 }, {
   id: '4',
-  name: 'Postres',
-  amount: 9
+  name: 'Tienda de regalos'
 }, {
   id: '5',
-  name: 'Bebidas',
-  amount: 4
-}, {
+  name: 'Servicio al cuarto'
+},  {
   id: '6',
-  name: 'Servicios',
-  amount: 2
+  name: 'Promociones'
 }];
 
 export const featured = [{

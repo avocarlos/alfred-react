@@ -6,7 +6,6 @@ import I18n, { Languages } from '../i18n';
 
 function getValue(keys: string, args = {}, language: Languages): string {
   const splittedKeys = keys.split('.');
-  console.log(I18n[language]);
   // @ts-ignore
   return splittedKeys.reduce((acc, key) => {
     // @ts-ignore

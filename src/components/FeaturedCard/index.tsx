@@ -26,7 +26,7 @@ const FeaturedCard: React.FC<Props> = (props) => {
   } = props;
 
   return (
-    <Card elevation={2}>
+    <Card elevation={0}>
       <CardActionArea onClick={() => onClick(category.id)}>
         <CardMedia
           component="img"

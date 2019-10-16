@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import FeaturedCard from '../FeaturedCard';
-import CategoryCard from '../CategoryCard';
+import CategoryButton from '../CategoryButton';
 import OrderCard from '../OrderCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -15,11 +15,11 @@ import {featured, categories} from './faker';
 
 const useStyles = makeStyles((theme) => ({
   bottomSpace: {
-    marginBottom: theme.spacing(6)
+    marginTop: theme.spacing(6)
   }
 }));
 
-const Categories: React.FC<RouteComponentProps> = (props) => {
+const HomeScreen: React.FC<RouteComponentProps> = (props) => {
   const classes = useStyles();
   const { state: { orders } } = useContext(StoreContext);
   const {t} = useLanguage();
@@ -30,9 +30,9 @@ const Categories: React.FC<RouteComponentProps> = (props) => {
   }
 
   function renderCategories() {
-    return categories.map(({id, name, amount}) => (
-      <Grid key={id} item xs={3}>
-        <CategoryCard id={id} title={name} amount={amount} onClick={onCategoryClick} />
+    return categories.map(({id, name}) => (
+      <Grid key={id} item xs={2}>
+        <CategoryButton id={id} title={name} onClick={onCategoryClick} />
       </Grid>
     ));
   }
@@ -55,6 +55,11 @@ const Categories: React.FC<RouteComponentProps> = (props) => {
 
   return (
     <Grid container>
+      <Grid item xs={12} classes={{item: classes.bottomSpace}}>
+        <Grid container spacing={4}>
+          {renderCategories()}
+        </Grid>
+      </Grid>
       {!!orders.length && (
         <Grid item xs={12} classes={{item: classes.bottomSpace}}>
           <Typography paragraph variant="h5">{t('categories.orders.title')}</Typography>
@@ -65,19 +70,21 @@ const Categories: React.FC<RouteComponentProps> = (props) => {
         </Grid>
       )}
       <Grid item xs={12} classes={{item: classes.bottomSpace}}>
-        <Typography paragraph variant="h5">{t('categories.featured.title')}</Typography>
+        <Typography variant="h5">{t('categories.featured.title')}</Typography>
+        <Typography paragraph color="textSecondary" variant="subtitle1">Sugerencias de nuestro chef</Typography>
         <Grid container spacing={4}>
           {renderFeatured()}
         </Grid>
       </Grid>
       <Grid item xs={12} classes={{item: classes.bottomSpace}}>
-        <Typography paragraph variant="h5">{t('categories.categories.title')}</Typography>
+        <Typography variant="h5">{t('categories.featured.title')}</Typography>
+        <Typography paragraph color="textSecondary" variant="subtitle1">Sugerencias de nuestro chef</Typography>
         <Grid container spacing={4}>
-          {renderCategories()}
+          {renderFeatured()}
         </Grid>
       </Grid>
     </Grid>
   );
 };
 
-export default withRouter(Categories);
+export default withRouter(HomeScreen);
