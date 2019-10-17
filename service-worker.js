@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/alfred-react/precache-manifest.4f9071eb9d1930c1c426bfc6d14dff5b.js"
+  "/alfred-react/precache-manifest.2853f286e72baac1c898ffb16cfafd3a.js"
 );
 
 self.addEventListener('message', (event) => {

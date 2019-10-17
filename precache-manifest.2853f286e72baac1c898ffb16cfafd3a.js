@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a3a0b2d29b15d7c2f438277e67ac49db",
+    "revision": "b508e8df905958ce8a8b50e2c74d9bc1",
     "url": "/alfred-react/index.html"
   },
   {
-    "revision": "34d50327015d3256994e",
+    "revision": "0af73b05104d046ffaba",
     "url": "/alfred-react/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "d73d8fabce9b6dfba1f5",
-    "url": "/alfred-react/static/js/2.793c11e7.chunk.js"
+    "revision": "32d0cacd17fe3d78eadb",
+    "url": "/alfred-react/static/js/2.9e066ba4.chunk.js"
   },
   {
-    "revision": "34d50327015d3256994e",
-    "url": "/alfred-react/static/js/main.f776ab36.chunk.js"
+    "revision": "0af73b05104d046ffaba",
+    "url": "/alfred-react/static/js/main.3416f173.chunk.js"
   },
   {
     "revision": "4539457b6b3a273a8085",
