@@ -1,16 +1,24 @@
 {
   "files": {
     "main.css": "/alfred-react/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/alfred-react/static/js/main.2f0fe33e.chunk.js",
-    "main.js.map": "/alfred-react/static/js/main.2f0fe33e.chunk.js.map",
+    "main.js": "/alfred-react/static/js/main.e466148a.chunk.js",
+    "main.js.map": "/alfred-react/static/js/main.e466148a.chunk.js.map",
     "runtime-main.js": "/alfred-react/static/js/runtime-main.a9040a7a.js",
     "runtime-main.js.map": "/alfred-react/static/js/runtime-main.a9040a7a.js.map",
-    "static/js/2.5b7809cd.chunk.js": "/alfred-react/static/js/2.5b7809cd.chunk.js",
-    "static/js/2.5b7809cd.chunk.js.map": "/alfred-react/static/js/2.5b7809cd.chunk.js.map",
+    "static/js/2.793c11e7.chunk.js": "/alfred-react/static/js/2.793c11e7.chunk.js",
+    "static/js/2.793c11e7.chunk.js.map": "/alfred-react/static/js/2.793c11e7.chunk.js.map",
     "index.html": "/alfred-react/index.html",
-    "precache-manifest.1bc12fafba65675b0f3e041b4bb65248.js": "/alfred-react/precache-manifest.1bc12fafba65675b0f3e041b4bb65248.js",
+    "precache-manifest.45e1b7f6d395f211cc8b665d3e1d4fe4.js": "/alfred-react/precache-manifest.45e1b7f6d395f211cc8b665d3e1d4fe4.js",
     "service-worker.js": "/alfred-react/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/alfred-react/static/css/main.5ecd60fb.chunk.css.map",
-    "static/media/logo-horizontal.png": "/alfred-react/static/media/logo-horizontal.ce8b650f.png"
+    "static/media/event1.jpg": "/alfred-react/static/media/event1.90e65dff.jpg",
+    "static/media/event2.jpg": "/alfred-react/static/media/event2.dcd4c255.jpg",
+    "static/media/event3.png": "/alfred-react/static/media/event3.d6d8c86f.png",
+    "static/media/event4.png": "/alfred-react/static/media/event4.ac6f15af.png",
+    "static/media/food1.jpeg": "/alfred-react/static/media/food1.f3a0e8da.jpeg",
+    "static/media/food2.jpeg": "/alfred-react/static/media/food2.256c7b65.jpeg",
+    "static/media/logo-horizontal.png": "/alfred-react/static/media/logo-horizontal.ce8b650f.png",
+    "static/media/promo1.png": "/alfred-react/static/media/promo1.aa0b8d70.png",
+    "static/media/promo2.jpg": "/alfred-react/static/media/promo2.0bc6d932.jpg"
   }
 }
