@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,10 +12,11 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import { makeStyles } from '@material-ui/core/styles';
 import LogoSrc from './logo-horizontal.png';
 import useLanguage from '../../hooks/useLanguage';
-import StoreContext from '../../context';
+import {useStore} from '../../context';
 import { Languages } from '../../i18n';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { orders } from '../HomeScreen/faker';
+import { Sidebars } from '../MainContainer';
+import { SubmittedOrder } from '../../reducer/types';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -47,13 +48,13 @@ const languages = [{
 }]
 
 interface Props {
-  drawer: boolean;
-  setDrawer: (opened: boolean) => void;
+  sidebar: boolean;
+  setSidebar: (sibebar: Sidebars) => void;
 }
 
 const LanguageButton = () => {
   const [menu, setMenu] = useState<HTMLElement | null>(null);
-  const { state } = useContext(StoreContext);
+  const { state } = useStore();
   const { setSelectedLanguage } = useLanguage();
 
   function onIconClick(event: React.MouseEvent<HTMLButtonElement>) {
@@ -96,8 +97,8 @@ const LanguageButton = () => {
 }
 
 const TopBar: React.FC<Props & RouteComponentProps> = (props) => {
-  const {drawer, setDrawer} = props;
-  const { state } = useContext(StoreContext);
+  const {sidebar, setSidebar} = props;
+  const { state } = useStore();
   const { t } = useLanguage();
   const classes = useStyles();
 
@@ -122,17 +123,21 @@ const TopBar: React.FC<Props & RouteComponentProps> = (props) => {
           {!!state.orders.length && (
             <IconButton
               color="inherit"
-              onClick={() => setDrawer(!drawer)}
+              onClick={() => setSidebar(Sidebars.ORDERS)}
             >
-              <Badge variant="dot" color="error">
+              <Badge 
+                invisible={arePendingOrders(state.orders)}
+                variant="dot"
+                color="error"
+              >
                 <InboxIcon />
               </Badge>
             </IconButton>
           )}
-          {!drawer && (
+          {!sidebar && (
             <IconButton
               color="inherit"
-              onClick={() => setDrawer(!drawer)}
+              onClick={() => setSidebar(Sidebars.ORDER)}
             >
               <Badge badgeContent={state.order.totalItems} color="secondary">
                 <ShoppingCart />
@@ -145,5 +150,9 @@ const TopBar: React.FC<Props & RouteComponentProps> = (props) => {
     </>
   );
 };
+
+function arePendingOrders(orders: SubmittedOrder[]) {
+  return orders.every((order) => ['cancelled'].includes(order.status));
+}
 
 export default withRouter(TopBar);

@@ -1,4 +1,5 @@
-import React, {useState, useContext} from 'react';
+import React, { useState } from 'react';
+import { useStore } from '../../context';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,9 +14,8 @@ import ConfirmationDialog from './ConfirmationDialog';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
 import {setOrder, setOrders} from '../../reducer/actions';
-import { Order } from '../../reducer';
-
-import StoreContext from '../../context';
+import { Order } from '../../reducer/types';
+import uuid from 'uuid/v4';
 
 const useStyles = makeStyles({
   container: {
@@ -46,12 +46,12 @@ const useStyles = makeStyles({
 });
 
 interface Props extends RouteComponentProps {
-  setDrawer: (opened: boolean) => void;
+  onClose: () => void;
 }
 
 const OrderSideBar: React.FC<Props> = (props) => {
-  const {setDrawer} = props;
-  const { state: { order, orders }, dispatch } = useContext(StoreContext);
+  const {onClose} = props;
+  const { state: { order, orders }, dispatch } = useStore();
   const {t} = useLanguage();
   const [confirmation, setConfirmation] = useState(false);
   const classes = useStyles();
@@ -69,9 +69,10 @@ const OrderSideBar: React.FC<Props> = (props) => {
   });
 
   function confirmOrder():void {
-    dispatch(setOrders([...orders, order]));
+    const newOrder = { ...order, id: uuid(), status: 'submitted' };
+    dispatch(setOrders([...orders, newOrder]));
     setConfirmation(false);
-    setDrawer(false);
+    onClose();
   }
 
   function removeItem(itemId: string): void {
@@ -100,7 +101,7 @@ const OrderSideBar: React.FC<Props> = (props) => {
     <Grid container direction="column" classes={{container:classes.container}}>
       <Grid item classes={{item:classes.header}}>
         <Toolbar disableGutters classes={{root:classes.toolbar}}>
-          <IconButton color="inherit" onClick={() => setDrawer(false)}>
+          <IconButton color="inherit" onClick={() => onClose()}>
               <ChevronRightIcon />
           </IconButton>
           <Typography variant="h6">{t('root.order.title', {number: order.number})}</Typography>

@@ -6,27 +6,26 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Summary from '../OrderSummary';
 import useLanguage from '../../hooks/useLanguage';
-import { Order } from '../../reducer';
+import { SubmittedOrder } from '../../reducer/types';
+
 interface Props {
-  order: Order;
-  setSummary: (open: boolean) => void
+  order: SubmittedOrder;
+  onClose: () => void;
 }
 
-const SummaryDialog: React.FC<Props> = (props) => {
+const ConfirmationDialog: React.FC<Props> = ({order, onClose}) => {
   const {t} = useLanguage();
-  const {order, setSummary} = props;
-
   return (
-    <Dialog open={true} onClose={() => setSummary(false)}>
+    <Dialog open={true} onClose={onClose}>
       <DialogTitle>{t('root.dialog.summary.title', {number: order.number})}</DialogTitle>
       <DialogContent>
         <Summary items={order.items}/>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setSummary(false)}>{t('root.dialog.summary.close')}</Button>
+        <Button onClick={onClose}>{t('root.dialog.summary.close')}</Button>
       </DialogActions>
     </Dialog>
   );
 }
 
-export default SummaryDialog;
+export default ConfirmationDialog;

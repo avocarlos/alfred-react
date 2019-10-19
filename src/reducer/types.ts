@@ -1,3 +1,5 @@
+import { Languages } from '../i18n';
+
 interface Item {
   id: string;
   name: string;
@@ -7,15 +9,18 @@ interface Item {
 }
 
 export interface Order {
-  id?: string;
   number: number;
-  status?: string;
   items:  Item[];
   totalItems: number;
 }
 
+export interface SubmittedOrder extends Order {
+  id: string;
+  status: string;
+}
+
 export interface State {
   language: Languages;
-  orders: Order[];
+  orders: SubmittedOrder[];
   order: Order;
 }

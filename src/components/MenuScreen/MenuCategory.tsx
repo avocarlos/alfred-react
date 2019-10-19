@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useStore } from '../../context';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import MenuItem from './MenuItem';
-import StoreContext from '../../context';
 import { setOrder } from '../../reducer/actions';
 import { Box } from '@material-ui/core';
 
-import { Order } from '../../reducer';
+import { Order } from '../../reducer/types';
 export interface Item {
   id: string;
   name: string;
@@ -22,7 +22,7 @@ interface MenuCategoryProps {
 }
 
 const MenuCategory: React.FC<MenuCategoryProps> = ({title, items}) => {
-  const {state, dispatch} = useContext(StoreContext);
+  const {state, dispatch} = useStore();
 
   function onAddItem(item: Order['items'][0]) {
     const { order } = state;

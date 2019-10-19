@@ -5,6 +5,13 @@ export default {
       remove: 'Remove',
       submit: 'Place order'
     },
+    orders: {
+      title: 'Placed Orders',
+      order: {
+        title: (args: {number: number}) => `Order #${args.number}`,
+        cancel: 'Cancel'
+      }
+    },
     room: (args: {number: number}) =>  `Room #${args.number}`,
     summary: {
       item: 'Item',
@@ -23,6 +30,13 @@ export default {
         title: (args: {number: number}) =>  `Summary Order #${args.number}`,
         close: 'Close'
       }
+    },
+    orderStatuses: {
+      submitted: 'Submitted',
+      preparing: 'Cooking',
+      completed: 'Completed',
+      delivered: 'Delivered',
+      cancelled: 'Cancelled'
     }
   },
   home: {

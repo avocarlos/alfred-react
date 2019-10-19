@@ -1,5 +1,5 @@
-import {useState, useEffect, useContext} from 'react';
-import StoreContext from '../context';
+import {useState, useEffect} from 'react';
+import {useStore} from '../context';
 import { setLanguage } from '../reducer/actions';
 
 import I18n, { Languages } from '../i18n';
@@ -21,7 +21,7 @@ function getValue(keys: string, args = {}, language: Languages): string {
 
 const useLanguage =  () => {
   const [selectedLanguage, setSelectedLanguage] = useState();
-  const {state, dispatch} = useContext(StoreContext);
+  const {state, dispatch} = useStore();
 
   useEffect(() => {
     if (selectedLanguage && (state.language !== selectedLanguage)) {

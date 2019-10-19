@@ -5,6 +5,13 @@ export default {
       remove: 'Remover',
       submit: 'Realizar pedido'
     },
+    orders: {
+      title: 'Ordenes realizadas',
+      order: {
+        title: (args: {number: number}) => `Orden #${args.number}`,
+        cancel: 'Cancelar'
+      }
+    },
     room: (args: {number: number}) =>  `Habitación #${args.number}`,
     summary: {
       item: 'Pedido',
@@ -23,6 +30,13 @@ export default {
         title: (args: {number: number}) =>  `Resumen Orden #${args.number}`,
         close: 'Cerrar'
       }
+    },
+    orderStatuses: {
+      submitted: 'Enviada',
+      preparing: 'Cocinando',
+      completed: 'Completado',
+      delivered: 'Entregado',
+      cancelled: 'Cancelada'
     }
   },
   home: {

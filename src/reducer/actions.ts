@@ -1,5 +1,5 @@
 import { Languages } from '../i18n';
-import { Order } from './index';
+import { Order, SubmittedOrder } from './types';
 
 enum ActionEnum {
   SET_LANGUAGE = 'SET_LANGUAGE',
@@ -8,23 +8,23 @@ enum ActionEnum {
 }
 
 type LanguageAction = {
-  type: typeof ActionEnum.SET_LANGUAGE;
+  type: ActionEnum.SET_LANGUAGE;
   payload: {
     language: Languages;
   };
 }
 
 type OrderAction = {
-  type: typeof ActionEnum.SET_ORDER;
+  type: ActionEnum.SET_ORDER;
   payload: {
     order: Order;
   };
 }
 
 type OrdersAction = {
-  type: typeof ActionEnum.SET_ORDERS;
+  type: ActionEnum.SET_ORDERS;
   payload: {
-    orders: Order[];
+    orders: SubmittedOrder[];
   };
 }
 
@@ -32,4 +32,4 @@ export type Action = LanguageAction | OrderAction | OrdersAction;
 
 export const setLanguage = (language: Languages): LanguageAction => ({type: ActionEnum.SET_LANGUAGE, payload: {language}});
 export const setOrder = (order: Order): OrderAction => ({type: ActionEnum.SET_ORDER, payload: {order}});
-export const setOrders = (orders: Order[]): OrdersAction => ({type: ActionEnum.SET_ORDERS, payload: {orders}});
+export const setOrders = (orders: SubmittedOrder[]): OrdersAction => ({type: ActionEnum.SET_ORDERS, payload: {orders}});

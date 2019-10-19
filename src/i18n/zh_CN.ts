@@ -3,9 +3,16 @@ export default {
     order: {
       title: (args: {number: number}) => `订购 #${args.number}`,
       remove: '去掉',
-      submit: '下订单'
+      submit: '提交订单'
     },
     room: (args: {number: number}) =>  `房间 #${args.number}`,
+    orders: {
+      title: '下订单',
+      order: {
+        title: (args: {number: number}) => `订购 #${args.number}`,
+        cancel: '取消'
+      }
+    },
     summary: {
       item: '食品项目',
       price: '价钱',
@@ -23,6 +30,13 @@ export default {
         title: (args: {number: number}) =>  `摘要 #${args.number}`,
         close: '关'
       }
+    },
+    orderStatuses: {
+      submitted: '已提交',
+      preparing: '烹饪',
+      completed: '已完成',
+      delivered: '已交付',
+      cancelled: '取消'
     }
   },
   home: {

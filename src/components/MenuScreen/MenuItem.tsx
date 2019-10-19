@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
-import { Order } from '../../reducer';
+import { Order } from '../../reducer/types';
 
 const useStyles = makeStyles((theme) => ({
   container: {

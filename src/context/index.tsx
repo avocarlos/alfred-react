@@ -1,5 +1,6 @@
-import React, { Dispatch } from 'react';
-import { State, initialState } from '../reducer';
+import React, { Dispatch, useContext } from 'react';
+import { State } from '../reducer/types';
+import { initialState } from '../reducer/initialState';
 import { Action } from '../reducer/actions';
 
 export interface Context {
@@ -13,5 +14,7 @@ const initialContext = {
 }
 
 const StoreContext = React.createContext<Context>(initialContext);
+
+export const useStore = (): Context => useContext(StoreContext);
 
 export default StoreContext;
