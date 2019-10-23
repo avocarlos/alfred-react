@@ -6,6 +6,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Avatar from '@material-ui/core/Avatar';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import useLanguage from '../../hooks/useLanguage';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,19 +16,29 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(9)
   },
   text: {
-    display:'flex'
+    display:'flex',
+    flexDirection:'column'
   }
 }))
 
 interface Props {
+  itemId: string;
   title: string;
   quantity: number;
   thumbnail: string;
+  onRemove: (itemId: string) => void,
+  onQuantityChange: (itemId: string, quanity: number) => void
 }
 
 const OrderItem: React.FC<Props> = (props) => {
-  const {title, quantity, thumbnail} = props;
+  const {itemId, title, quantity, thumbnail, onRemove, onQuantityChange} = props;
+  const {t} = useLanguage();
   const classes = useStyles();
+
+  function onQuantitySelected(event: React.ChangeEvent<{ value: unknown }>) {
+    const quantity = event.target.value as number;
+    onQuantityChange(itemId, quantity);
+  }
 
   return (
     <ListItem 
@@ -44,11 +55,18 @@ const OrderItem: React.FC<Props> = (props) => {
         primary={title}
         primaryTypographyProps={{
           noWrap: true,
+          gutterBottom: true,
           variant: 'body2'
+        }}
+        secondary={t('root.order.remove')}
+        secondaryTypographyProps={{
+          variant: 'button',
+          onClick: () => onRemove(itemId)
         }}
       />
       <ListItemSecondaryAction>
         <Select
+          onChange={onQuantitySelected}
           value={quantity}
           inputProps={{
             name: 'quantity',

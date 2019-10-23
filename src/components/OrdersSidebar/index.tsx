@@ -1,6 +1,5 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -9,11 +8,13 @@ import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import OrderItem from './OrderItem';
 import List from '@material-ui/core/List';
-import ConfirmationDialog from './ConfirmationDialog';
+import ConfirmationDialog from './OrderDialog';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
 
-import StoreContext from '../../context';
+import { setOrders } from '../../reducer/actions';
+import { SubmittedOrder } from '../../reducer/types';
+import { useStore } from '../../context';
 
 const useStyles = makeStyles({
   container: {
@@ -28,6 +29,8 @@ const useStyles = makeStyles({
     paddingRight:8
   },
   list: {
+    height:150,
+    overflowY:'scroll',
     flexGrow:1,
     width:'100%'
   },
@@ -42,34 +45,38 @@ const useStyles = makeStyles({
 });
 
 interface Props extends RouteComponentProps {
-  setDrawer: (opened: boolean) => void;
+  onClose: () => void;
 }
 
-const OrderSideBar: React.FC<Props> = (props) => {
-  const {setDrawer, history} = props;
-  const { state: { order, orders } } = useContext(StoreContext);
+const OrdersSideBar: React.FC<Props> = (props) => {
+  const {onClose} = props;
+  const { state: { orders }, dispatch } = useStore();
   const {t} = useLanguage();
-  const [confirmation, setConfirmation] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<SubmittedOrder | null>();
   const classes = useStyles();
 
-  const renderItems = () => order && order.items.map(({id, name, quantity, thumbnail}) => {
-    return <OrderItem key={id} title={name} quantity={quantity} thumbnail={thumbnail} />
+  const renderItems = () => orders.map((order) => {
+    return <OrderItem 
+      key={order.id}  
+      order={order}
+      onClick={setSelectedOrder}
+      onCancel={cancelOrder}
+    />
   });
 
-  function confirmOrder() {
-    history.push('/');
-    setConfirmation(false);
-    setDrawer(false);
+  function cancelOrder(order: SubmittedOrder): void {
+    order.status = 'cancelled';
+    dispatch(setOrders(orders));
   }
 
   return (
     <Grid container direction="column" classes={{container:classes.container}}>
       <Grid item classes={{item:classes.header}}>
         <Toolbar disableGutters classes={{root:classes.toolbar}}>
-          <IconButton color="inherit" onClick={() => setDrawer(false)}>
+          <IconButton color="inherit" onClick={() => onClose()}>
               <ChevronRightIcon />
           </IconButton>
-          <Typography variant="h6">{t('root.order.title', {number: order.number})}</Typography>
+          <Typography variant="h6">{t('root.orders.title')}</Typography>
         </Toolbar>
         <Divider/>
       </Grid>
@@ -78,22 +85,9 @@ const OrderSideBar: React.FC<Props> = (props) => {
           {renderItems()}
         </List>
       </Grid>
-      <Grid item classes={{item:classes.footer}}>
-        <Button
-          disabled={!order.items.length}
-          variant="contained" 
-          color="secondary"
-          size="large" 
-          fullWidth 
-          classes={{root:classes.button}}
-          onClick={() => setConfirmation(true)}
-        >
-          {t('root.order.submit')}
-        </Button>
-      </Grid>
-      {confirmation && <ConfirmationDialog order={order} onClose={() => setConfirmation(false)} onAccept={confirmOrder} />}
+      {selectedOrder && <ConfirmationDialog order={selectedOrder} onClose={() => setSelectedOrder(null)} />}
     </Grid>
   );
 }
 
-export default withRouter(OrderSideBar);
+export default withRouter(OrdersSideBar);

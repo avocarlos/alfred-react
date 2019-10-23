@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import useLanguage from '../../hooks/useLanguage';
-import { Order } from '../../reducer';
+import { Order } from '../../reducer/types';
 
 const useStyles = makeStyles({
   tableFooter: {
