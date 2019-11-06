@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react';
-import {useStore} from '../context';
+import { useState, useEffect } from 'react';
+import { useStore } from '../context';
 import { setLanguage } from '../reducer/actions';
 
 import I18n, { Languages } from '../i18n';
@@ -19,16 +19,16 @@ function getValue(keys: string, args = {}, language: Languages): string {
 }
 
 
-const useLanguage =  () => {
+const useLanguage = () => {
   const [selectedLanguage, setSelectedLanguage] = useState();
   const {state, dispatch} = useStore();
 
   useEffect(() => {
-    if (selectedLanguage && (state.language !== selectedLanguage)) {
+    if (selectedLanguage) {
       dispatch(setLanguage(selectedLanguage));
       localStorage.setItem('sessionLanguage', selectedLanguage);
     }
-  }, [selectedLanguage, state.language, dispatch]);
+  }, [selectedLanguage, dispatch]);
 
   function t(key: string, args = {}) {
     return getValue(key, args, state.language || Languages.ES)

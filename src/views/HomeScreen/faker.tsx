@@ -1,6 +1,8 @@
 import faker from 'faker';
 import promo1 from './images/promo1.png';
 import promo2 from './images/promo2.jpg';
+import promo3 from './images/promo3.jpeg';
+import promo4 from './images/promo4.jpg';
 import event1 from './images/event1.jpg';
 import event2 from './images/event2.jpg';
 import event3 from './images/event3.png';
@@ -10,22 +12,22 @@ import food2 from './images/food2.jpeg';
 
 export const categories = [{
   id: '1',
-  name: 'Restaurant'
+  name: 'restaurant'
 }, {
   id: '2',
-  name: 'Cafe'
+  name: 'coffee'
 }, {
   id: '3',
-  name: 'Postres'
+  name: 'dessert'
 }, {
   id: '4',
-  name: 'Tienda de regalos'
+  name: 'gift'
 }, {
   id: '5',
-  name: 'Servicio al cuarto'
+  name: 'room'
 },  {
   id: '6',
-  name: 'Promociones'
+  name: 'deals'
 }];
 
 export const featured = [{
@@ -86,13 +88,13 @@ export const deals = [{
   image: promo1
 }, {
   title: 'Deal 2',
-  image: promo2
+  image: promo3
 }, {
   title: 'Deal 3',
-  image: promo1
+  image: promo2
 }, {
   title: 'Deal 4',
-  image: promo2
+  image: promo4
 }];
 
 export const events = [{

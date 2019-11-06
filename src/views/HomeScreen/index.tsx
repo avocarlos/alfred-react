@@ -2,13 +2,13 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import FeaturedCard from '../FeaturedCard';
-import DealCard from '../DealCard';
-import CategoryButton from '../CategoryButton';
+import FeaturedCard from '../../components/FeaturedCard';
+import DealCard from '../../components/DealCard';
+import CategoryButton from '../../components/CategoryButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
-import Carousel from '../Carousel';
+import Carousel from '../../components/Carousel';
 import chunk from 'lodash.chunk';
 
 import {deals, featured, categories, events} from './faker';
@@ -26,13 +26,15 @@ const HomeScreen: React.FC<RouteComponentProps> = (props) => {
   const {history} = props;
 
   function onCategoryClick(id: string): void {
-    history.push(`/categories/${id}`);
+    if (id === '1') {
+      history.push(`/categories/${id}`);
+    }
   }
 
   function renderCategories() {
     return categories.map(({id, name}) => (
       <Grid key={id} item xs={2}>
-        <CategoryButton id={id} title={name} onClick={onCategoryClick} />
+        <CategoryButton id={id} title={t(`home.categories.${name}`)} onClick={onCategoryClick} />
       </Grid>
     ));
   }

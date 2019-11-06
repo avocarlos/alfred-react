@@ -41,12 +41,12 @@ export default {
   },
   home: {
     categories: {
-      restaurant: 'Restaurant',
-      coffee: 'Cafe',
-      dessert: 'Postres',
-      shop: 'Tienda de regalos',
-      roomService: 'Servicio al cuarto',
-      promociones: 'Promociones'
+      restaurant: '餐厅餐厅',
+      coffee: '咖啡店',
+      dessert: '甜品',
+      gift: '礼品店',
+      room: '客房服务',
+      deals: '促销活动',
     },
     deals: {
       title: '促销活动',

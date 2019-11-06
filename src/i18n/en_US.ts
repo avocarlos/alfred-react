@@ -42,11 +42,11 @@ export default {
   home: {
     categories: {
       restaurant: 'Restaurant',
-      coffee: 'Cafe',
-      dessert: 'Postres',
-      shop: 'Tienda de regalos',
-      roomService: 'Servicio al cuarto',
-      promociones: 'Promociones'
+      coffee: 'Coffee',
+      dessert: 'Dessert',
+      gift: 'Gift shop',
+      room: 'Room service',
+      deals: 'Deals',
     },
     deals: {
       title: 'Deals',

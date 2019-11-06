@@ -1,9 +1,9 @@
 import React, {useEffect, useReducer} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import MainContainer from './components/MainContainer';
-import HomeScreen from './components/HomeScreen';
-import WelcomeScreen from './components/WelcomeScreen';
-import MenuScreen from './components/MenuScreen';
+import HomeScreen from './views/HomeScreen';
+import WelcomeScreen from './views/WelcomeScreen';
+import MenuScreen from './views/MenuScreen';
 import StoreReducer from './reducer';
 import { initialState } from './reducer/initialState';
 import { setLanguage } from './reducer/actions';
@@ -24,20 +24,68 @@ const App: React.FC = () => {
     }
   }, [state.language]);
 
-  useEffect(() => {
-    ApiClient.subscribe();
-  }, []);
+  // useEffect(() => {
+  //   ApiClient.subscribe();
+  // }, []);
 
   return (
     <Router basename={PUBLIC_URL}>
       <StoreContext.Provider value={{state, dispatch}}>
-        <MainContainer>
-          <Route path="/" exact component={HomeScreen}/>
-          <Route path="/welcome" exact component={WelcomeScreen}/>
-          <Route path="/categories/:categoryId" component={MenuScreen}/>
-        </MainContainer>
+        <Switch>
+          <Route path="/welcome" exact>
+            <WelcomeRouting />
+          </Route>
+          <Route path="/">
+            <AppRouting />  
+          </Route>
+        </Switch>
       </StoreContext.Provider>
     </Router>
+  );
+}
+
+function WelcomeRouting() {
+  const history = useHistory();
+
+  useEffect(() => {
+    const setUpDone = localStorage.getItem('setUp');
+
+    if (setUpDone) {
+      history.push('/');
+    }
+  });
+
+  return (
+    <Switch>
+      <Route path="/welcome" exact>
+        <WelcomeScreen/>
+      </Route>
+    </Switch>
+  );
+}
+
+function AppRouting() {
+  const history = useHistory();
+
+  useEffect(() => {
+    const setUpDone = localStorage.getItem('setUp');
+
+    if (!setUpDone) {
+      history.push('/welcome');
+    }
+  }, []);
+
+  return (
+    <MainContainer>
+      <Switch>
+        <Route path="/" exact>
+          <HomeScreen />
+        </Route>
+        <Route path="/categories/1" exact>
+          <MenuScreen />
+        </Route>
+      </Switch>
+    </MainContainer>
   );
 }
 
