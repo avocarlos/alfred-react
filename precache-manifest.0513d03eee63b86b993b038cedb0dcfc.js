@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "265d0449ae7550a0403e7777a883d8f7",
+    "revision": "f6a2fad469b8961330e9146c0cc3af2d",
     "url": "/alfred-react/index.html"
   },
   {
-    "revision": "9472cead3d910fa01b9a",
-    "url": "/alfred-react/static/css/main.5ecd60fb.chunk.css"
+    "revision": "b1fb2e9a2db8bdde8d6a",
+    "url": "/alfred-react/static/css/main.bf3615c7.chunk.css"
   },
   {
-    "revision": "19818db884031d9e8341",
-    "url": "/alfred-react/static/js/2.79b86275.chunk.js"
+    "revision": "c371bbb142329349acba",
+    "url": "/alfred-react/static/js/2.4fc0c658.chunk.js"
   },
   {
-    "revision": "9472cead3d910fa01b9a",
-    "url": "/alfred-react/static/js/main.17ffa6ed.chunk.js"
+    "revision": "b1fb2e9a2db8bdde8d6a",
+    "url": "/alfred-react/static/js/main.296772fa.chunk.js"
   },
   {
     "revision": "4539457b6b3a273a8085",
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alfred-react/static/media/food2.256c7b65.jpeg"
   },
   {
-    "revision": "ce8b650f687c3e7e61d409f5371a0fb8",
-    "url": "/alfred-react/static/media/logo-horizontal.ce8b650f.png"
+    "revision": "7325d197fa747ce885ebbd1bdcd11d61",
+    "url": "/alfred-react/static/media/logo-horizontal.7325d197.png"
   },
   {
     "revision": "aa0b8d7022bd1c5afac521d16d0f1715",
@@ -54,5 +54,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "0bc6d93254640b0baa3ba9454c8815dd",
     "url": "/alfred-react/static/media/promo2.0bc6d932.jpg"
+  },
+  {
+    "revision": "8769c954162ae514f7d6df916003ef6f",
+    "url": "/alfred-react/static/media/promo3.8769c954.jpeg"
+  },
+  {
+    "revision": "1eab25dde5ece8978a97a270ff49a7cd",
+    "url": "/alfred-react/static/media/promo4.1eab25dd.jpg"
   }
 ]);

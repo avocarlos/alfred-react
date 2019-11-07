@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/alfred-react/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/alfred-react/static/js/main.17ffa6ed.chunk.js",
-    "main.js.map": "/alfred-react/static/js/main.17ffa6ed.chunk.js.map",
+    "main.css": "/alfred-react/static/css/main.bf3615c7.chunk.css",
+    "main.js": "/alfred-react/static/js/main.296772fa.chunk.js",
+    "main.js.map": "/alfred-react/static/js/main.296772fa.chunk.js.map",
     "runtime-main.js": "/alfred-react/static/js/runtime-main.a9040a7a.js",
     "runtime-main.js.map": "/alfred-react/static/js/runtime-main.a9040a7a.js.map",
-    "static/js/2.79b86275.chunk.js": "/alfred-react/static/js/2.79b86275.chunk.js",
-    "static/js/2.79b86275.chunk.js.map": "/alfred-react/static/js/2.79b86275.chunk.js.map",
+    "static/js/2.4fc0c658.chunk.js": "/alfred-react/static/js/2.4fc0c658.chunk.js",
+    "static/js/2.4fc0c658.chunk.js.map": "/alfred-react/static/js/2.4fc0c658.chunk.js.map",
     "index.html": "/alfred-react/index.html",
-    "precache-manifest.3bbf77de921a0772d21e232af6564749.js": "/alfred-react/precache-manifest.3bbf77de921a0772d21e232af6564749.js",
+    "precache-manifest.0513d03eee63b86b993b038cedb0dcfc.js": "/alfred-react/precache-manifest.0513d03eee63b86b993b038cedb0dcfc.js",
     "service-worker.js": "/alfred-react/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/alfred-react/static/css/main.5ecd60fb.chunk.css.map",
+    "static/css/main.bf3615c7.chunk.css.map": "/alfred-react/static/css/main.bf3615c7.chunk.css.map",
     "static/media/event1.jpg": "/alfred-react/static/media/event1.90e65dff.jpg",
     "static/media/event2.jpg": "/alfred-react/static/media/event2.dcd4c255.jpg",
     "static/media/event3.png": "/alfred-react/static/media/event3.d6d8c86f.png",
     "static/media/event4.png": "/alfred-react/static/media/event4.ac6f15af.png",
     "static/media/food1.jpeg": "/alfred-react/static/media/food1.f3a0e8da.jpeg",
     "static/media/food2.jpeg": "/alfred-react/static/media/food2.256c7b65.jpeg",
-    "static/media/logo-horizontal.png": "/alfred-react/static/media/logo-horizontal.ce8b650f.png",
+    "static/media/logo-horizontal.png": "/alfred-react/static/media/logo-horizontal.7325d197.png",
     "static/media/promo1.png": "/alfred-react/static/media/promo1.aa0b8d70.png",
-    "static/media/promo2.jpg": "/alfred-react/static/media/promo2.0bc6d932.jpg"
+    "static/media/promo2.jpg": "/alfred-react/static/media/promo2.0bc6d932.jpg",
+    "static/media/promo3.jpeg": "/alfred-react/static/media/promo3.8769c954.jpeg",
+    "static/media/promo4.jpg": "/alfred-react/static/media/promo4.1eab25dd.jpg"
   }
 }
