@@ -1,6 +1,5 @@
 {
   "name": "alfred-react",
-  "homepage": "http://stand87.github.io/alfred-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

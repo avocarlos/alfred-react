@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bf3615c7.chunk.css",
+    "main.js": "/static/js/main.34000452.chunk.js",
+    "main.js.map": "/static/js/main.34000452.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6fd48f80.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6fd48f80.js.map",
+    "static/js/2.4fc0c658.chunk.js": "/static/js/2.4fc0c658.chunk.js",
+    "static/js/2.4fc0c658.chunk.js.map": "/static/js/2.4fc0c658.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9ffbb5efd104a66b5fbfdd30075aa76a.js": "/precache-manifest.9ffbb5efd104a66b5fbfdd30075aa76a.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.bf3615c7.chunk.css.map": "/static/css/main.bf3615c7.chunk.css.map",
+    "static/media/event1.jpg": "/static/media/event1.90e65dff.jpg",
+    "static/media/event2.jpg": "/static/media/event2.dcd4c255.jpg",
+    "static/media/event3.png": "/static/media/event3.d6d8c86f.png",
+    "static/media/event4.png": "/static/media/event4.ac6f15af.png",
+    "static/media/food1.jpeg": "/static/media/food1.f3a0e8da.jpeg",
+    "static/media/food2.jpeg": "/static/media/food2.256c7b65.jpeg",
+    "static/media/logo-horizontal.png": "/static/media/logo-horizontal.7325d197.png",
+    "static/media/promo1.png": "/static/media/promo1.aa0b8d70.png",
+    "static/media/promo2.jpg": "/static/media/promo2.0bc6d932.jpg",
+    "static/media/promo3.jpeg": "/static/media/promo3.8769c954.jpeg",
+    "static/media/promo4.jpg": "/static/media/promo4.1eab25dd.jpg"
+  }
+}
